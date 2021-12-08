@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Enemy
+  - Minimap
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - Ground
+  - Water
+  - Obstacle
+  - ItemHealth
+  - Tree
+  - Player
+  - Enemy
+  - Jambildle
+  - ItemAmmo
+  - Bullet
+  - Confiner
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Ground
+    uniqueID: 964041413
+    locked: 0
+  - name: Water
+    uniqueID: 473911759
+    locked: 0
+  - name: Obstacle
+    uniqueID: 487180405
+    locked: 0
+  - name: Tree
+    uniqueID: 338588895
+    locked: 0
+  - name: Items
+    uniqueID: 4082297099
+    locked: 0
+  - name: Jambidle
+    uniqueID: 3480125127
+    locked: 0
+  - name: Enemy
+    uniqueID: 850195015
+    locked: 0
+  - name: Player
+    uniqueID: 446864653
+    locked: 0
