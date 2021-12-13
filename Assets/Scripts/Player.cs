@@ -23,13 +23,22 @@ public class Player : MonoBehaviour
     AudioSource audioSource;
     [SerializeField] AudioClip takeDameSound;
     [SerializeField] AudioClip fireSound;
+    public static int Level = 1;
 
     bool isExit;
     [SerializeField] float speed = 3f;
 
-    void Start()
+    private void Awake()
     {
         levelManager = FindObjectOfType<LevelManager>();
+        if (!LevelManager.isNewGame)
+        {
+            levelManager.LoadGameFileJson(this);
+        }
+    }
+
+    void Start()
+    {
         ammoText.text = ammo + "/10";
         boxCollider2D = GetComponent<BoxCollider2D>();
         isExit = false;
@@ -40,8 +49,29 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        UpdateInfo();
         Run();
         IdlePlayer();
+    }
+
+    public float GetHealth()
+    {
+        return this.health;
+    }
+
+    public void SetHealth(float health)
+    {
+        this.health = health;
+    }
+
+    public int GetAmmo()
+    {
+        return this.ammo;
+    }
+
+    public void SetAmmo(int ammo)
+    {
+        this.ammo = ammo;
     }
 
     public Vector2 getDirection()
@@ -75,19 +105,25 @@ public class Player : MonoBehaviour
             health += value;
         else if (health > 100f)
             health = 100f;
-        HealthBar.instance.setValue(health / 100);
+        //HealthBar.instance.setValue(health / 100);
     }
 
     public void ResetHealth()
     {
         this.health = 100f;
-        HealthBar.instance.setValue(health / 100);
+        //HealthBar.instance.setValue(health / 100);
     }
 
     public void ResetAmmo()
     {
         ammo = 10;
+        //ammoText.text = ammo + "/10";
+    }
+
+    void UpdateInfo()
+    {
         ammoText.text = ammo + "/10";
+        HealthBar.instance.setValue(health / 100);
     }
 
     public void AddAmmo(int value)
@@ -95,14 +131,14 @@ public class Player : MonoBehaviour
         ammo += value;
         if (ammo > 10)
             ammo = 10;
-        ammoText.text = ammo + "/10";
+       // ammoText.text = ammo + "/10";
     }
 
     void TakeDamage(float value)
     {
         PlayAudio(takeDameSound);
         this.health -= value;
-        HealthBar.instance.setValue(health / 100);
+        //HealthBar.instance.setValue(health / 100);
         if (health <= 0)
         {
             animator.SetBool("isHit", true);
@@ -144,7 +180,7 @@ public class Player : MonoBehaviour
         if (ammo > 0)
         {
             ammo--;
-            ammoText.text = ammo + "/10";
+            //ammoText.text = ammo + "/10";
             Instantiate(bullet, gun.position, Quaternion.identity);
             PlayAudio(fireSound);
         }
